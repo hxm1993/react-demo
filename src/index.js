@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
+import { mainRouter } from "./routes"
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Switch>
+      <Route path="/admin" render={routerProps => {
+        //需要登录权限
+        return <App {...routerProps} />
+      }}></Route>
+
+      {mainRouter.map(router => {
+        return <Route key={router.pathname} path={router.pathname} component={router.component} />
+      })}
+
+      <Redirect to="/admin" from="/" exact />
+      <Redirect to="/404" />
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
 

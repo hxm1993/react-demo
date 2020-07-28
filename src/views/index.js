@@ -32,11 +32,16 @@ const Setting = loadable({
     loader: () => import("./Setting"),
     loading: Loading
 })
+const Notification = loadable({
+    loader: () => import("./Notification"),
+    loading: Loading
+})
 export {
     Dashboard,
     ArticleList,
     ArticleEdit,
     Login,
     Setting,
-    NotFound
+    NotFound,
+    Notification
 }

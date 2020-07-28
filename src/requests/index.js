@@ -51,4 +51,7 @@ export const deleteArticleById = (id) => {
     return serve.post(`/api/v1/articleDelete/${id}`)
 }
 
-
+//获取文章每个月的浏览量
+export const getArticleAmount = (id) => {
+    return serve.post(`/api/v1/articleAmount`)
+}

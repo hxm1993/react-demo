@@ -16,7 +16,6 @@ serve.interceptors.request.use(config => {
 })
 
 serve.interceptors.response.use(res => {
-    console.log('es,', res)
     if(res.data.code == 200) {
         return res.data.data
     }else {
@@ -54,4 +53,17 @@ export const deleteArticleById = (id) => {
 //获取文章每个月的浏览量
 export const getArticleAmount = (id) => {
     return serve.post(`/api/v1/articleAmount`)
+}
+
+//获取通知列表
+export const getNotifications = () => {
+    return serve.post(`/api/v1/notifications`)
+    
+}
+
+//登录
+export const login = (userInfo) => {
+    return serve.post(`/api/v1/login`,{
+        ...userInfo
+    })
 }

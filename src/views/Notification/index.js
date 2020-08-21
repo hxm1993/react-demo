@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Button, List, Badge  } from "antd"
+import { connect } from "react-redux"
+import { makeNotificationAsReadById, makeAllNotificationAsRead } from "../../actions/notification"
 
 const data = [
     {
@@ -22,13 +24,29 @@ const data = [
     }
   ];
 
-export default class Notification extends Component {
+const mapStateToProps = state => {
+    return {
+        list: state.notifications.list
+    }
+}
+
+@connect(mapStateToProps, {makeNotificationAsReadById, makeAllNotificationAsRead})
+class Notification extends Component {
+    // constructor(props) {
+    //     super(props)
+    // }
+    makeNotificationAsRead(id) {
+        this.props.makeNotificationAsReadById(id)
+    }
+    makeAllNotificationAsRead() {
+        this.props.makeAllNotificationAsRead();
+    }
     render() {
         return (
-            <Card title="通知中心" extra={<Button>全部标为已读</Button>} >
+            <Card title="通知中心" extra={<Button disabled={this.props.list.every(d => d.hasRead == false)} onClick={() => this.makeAllNotificationAsRead()}>全部标为已读</Button>} >
                 <List
                     itemLayout="horizontal"
-                    dataSource={data}
+                    dataSource={this.props.list}
                     renderItem={item => (
                         <List.Item>
                             <List.Item.Meta
@@ -36,7 +54,7 @@ export default class Notification extends Component {
                                 description={item.desc}
                             />
                             
-                            {item.hasRead ? <Button>标为已读</Button> : null}
+                            {item.hasRead ? <Button onClick={() => this.makeNotificationAsRead(item.id)}>标为已读</Button> : null}
                         </List.Item>
                     )}
                 />
@@ -44,3 +62,5 @@ export default class Notification extends Component {
         )
     }
 }
+
+export default Notification;

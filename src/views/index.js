@@ -36,6 +36,10 @@ const Notification = loadable({
     loader: () => import("./Notification"),
     loading: Loading
 })
+const Profile = loadable({
+    loader: () => import("./Profile"),
+    loading: Loading
+})
 export {
     Dashboard,
     ArticleList,
@@ -43,5 +47,6 @@ export {
     Login,
     Setting,
     NotFound,
-    Notification
+    Notification,
+    Profile
 }

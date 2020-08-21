@@ -5,23 +5,27 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import { mainRouter } from "./routes"
+import store from "./store"
+import { Provider } from "react-redux"
 
 ReactDOM.render(
-  <Router>
-    <Switch>
-      <Route path="/admin" render={routerProps => {
-        //需要登录权限
-        return <App {...routerProps} />
-      }}></Route>
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route path="/admin" render={routerProps => {
+          //需要登录权限
+          return <App {...routerProps} />
+        }}></Route>
 
-      {mainRouter.map(router => {
-        return <Route key={router.pathname} path={router.pathname} component={router.component} />
-      })}
+        {mainRouter.map(router => {
+          return <Route key={router.pathname} path={router.pathname} component={router.component} />
+        })}
 
-      <Redirect to="/admin" from="/" exact />
-      <Redirect to="/404" />
-    </Switch>
-  </Router>,
+        <Redirect to="/admin" from="/" exact />
+        <Redirect to="/404" />
+      </Switch>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 

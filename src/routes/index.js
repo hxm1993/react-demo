@@ -5,7 +5,8 @@ import {
     Login,
     Setting,
     NotFound,
-    Notification
+    Notification,
+    Profile
 } from "../views";
 
 export const mainRouter = [
@@ -46,6 +47,10 @@ export const adminRouter = [
     {
         pathname: '/admin/notification',
         component: Notification        
+    },
+    {
+        pathname: '/admin/profile',
+        component: Profile        
     }
 
 ]

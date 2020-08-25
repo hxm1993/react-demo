@@ -67,3 +67,18 @@ export const login = (userInfo) => {
         ...userInfo
     })
 }
+
+//修改用户头像
+export const modifyUserAvatar = (file) => {
+    // let uploadFile = new FormData();
+    // uploadFile.append("Token",'25f71a63ddaae35d7790096306f023138cd622fc:fQh-qBrOoYsDrV7kgqndNx3mpEs=:eyJkZWFkbGluZSI6MTU5Nzk5OTMyNSwiYWN0aW9uIjoiZ2V0IiwidWlkIjoiNzI1NjE0IiwiYWlkIjoiMTcxMTkxOSIsImZyb20iOiJmaWxlIn0=')
+    // uploadFile.append('file', file)
+    // return serve.post(`http://up.imgapi.com/`,uploadFile)
+
+    let uploadFile = new FormData();
+        uploadFile.append("Token",'25f71a63ddaae35d7790096306f023138cd622fc:fQh-qBrOoYsDrV7kgqndNx3mpEs=:eyJkZWFkbGluZSI6MTU5Nzk5OTMyNSwiYWN0aW9uIjoiZ2V0IiwidWlkIjoiNzI1NjE0IiwiYWlkIjoiMTcxMTkxOSIsImZyb20iOiJmaWxlIn0=')
+        uploadFile.append('file', file)
+        return axios.post("http://up.imgapi.com/",uploadFile)
+
+    
+}

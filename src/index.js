@@ -7,11 +7,18 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import { mainRouter } from "./routes"
 import store from "./store"
 import { Provider } from "react-redux"
+import Dashboard from "./views/Dashboard"
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Switch>
+        {/* <Route path="/dashboard" render={props => {
+            console.log(111,props)
+            return <Dashboard />
+        }} />
+        <Route path="/dashboard/1" component={Dashboard} /> */}
+        
         <Route path="/admin" render={routerProps => {
           //需要登录权限
           return <App {...routerProps} />
@@ -22,7 +29,7 @@ ReactDOM.render(
         })}
 
         <Redirect to="/admin" from="/" exact />
-        <Redirect to="/404" />
+        {/* <Redirect to="/404" /> */}
       </Switch>
     </Router>
   </Provider>,

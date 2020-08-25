@@ -36,6 +36,17 @@ export default (state=initState, action) => {
                 isLogin: false,
                 isLoading: false
             }
+        case actionTypes.CHANGE_AVATAR:
+        let imgUrl = action.payload.linkurl
+        console.log(123,action.payload.linkurl)
+            return {
+                ...state,
+
+                userInfo: {
+                    ...state.userInfo,
+                    avator: imgUrl
+                }
+            }
         default: 
             return state
     }

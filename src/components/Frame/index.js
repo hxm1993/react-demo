@@ -18,7 +18,8 @@ const { Header, Content, Sider } = Layout;
             list: state.notifications.list,
             notificationsCount: state.notifications.list.filter(n => n.hasRead == true).length,
             isLoading: state.notifications.isLoading,
-            userInfo: JSON.parse(localStorage.getItem("userInfo") || sessionStorage.getItem("userInfo"))
+            userInfo: JSON.parse(localStorage.getItem("userInfo") || sessionStorage.getItem("userInfo")),
+            avator: state.login.userInfo.avator
         }
     },
     {
@@ -70,7 +71,7 @@ class Frame extends Component {
                         <div>
                             <Dropdown overlay={this.initPersonalMenu()}>
                                 <a className="ant-dropdown-link" onClick={e => e.preventDefault()} style={{ display: 'flex', alignItems: 'center' }}>
-                                    <Avatar src={this.props.userInfo.avatar} />
+                                    <Avatar src={this.props.avator} />
                                     <span>欢迎您！{this.props.userInfo.displayName} </span>
                                     <DownOutlined />
                                     <Badge count={this.props.notificationsCount} offset={[-10, -25]} />
